@@ -20,7 +20,7 @@ public class BSTree
      */
    public boolean isEmpty()
    {
-      return root==null;
+      return root == null;
    }
 
 
