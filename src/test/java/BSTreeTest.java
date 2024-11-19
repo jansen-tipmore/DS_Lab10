@@ -99,6 +99,8 @@ class BSTreeTest {
 		assertFalse(equalitree.myEquals(equalitree4));
 		assertFalse(equalitree.myEquals(equalitree5));
 		assertFalse(equalitree.myEquals(equalitree6));
+		assertFalse(equalitree6.myEquals(equalitree));
+		assertFalse(equalitree6.myEquals(equalitree2));
 		}
 
 }

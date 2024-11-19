@@ -10,9 +10,7 @@ public class BSTree
    private BSTNode<Integer> root;
 
    public BSTree()
-   {
-   
-       
+   {  
    }
 
     /**
@@ -29,6 +27,15 @@ public class BSTree
      */
    public void insert(Integer target)
    {
+	   if (target == null) {
+		   return;
+	   }
+	   if (isEmpty() == true) {
+		   root = new BSTNode<Integer>(target, null, null);
+	   }
+	   else {
+		 root.insert(target);   
+	   }
    }
 
 
@@ -38,7 +45,15 @@ public class BSTree
      */
    public Integer retrieve(Integer target)
    {
-	return null;
+	if(target == null) {
+		return null;
+	}
+	if(isEmpty() == true) {
+		return null;
+	}
+	else {
+		return root.retrieve(target);
+	}
    }
 
 
@@ -52,7 +67,10 @@ public class BSTree
      */
    public int retrieveDepth(Integer target)
    {
-	return 0;
+	if(target == null) {
+		return -1;
+	}
+	return root.retrieveDepth(target);
        
    }
 
@@ -95,7 +113,12 @@ public class BSTree
     */
    public Integer largest()
    {
-	return null;
+	if (isEmpty() == true) {
+		return null;
+	}
+	else {
+		return root.getLargest();
+	}
    
    }
 
@@ -136,7 +159,19 @@ public class BSTree
      */
    public int sum()
    {
-	return 0;
+	   int total = 0;
+	   if(isEmpty() == true) {
+		   return 0;
+	   }
+	   else {
+		   int tot = getSize();
+		   List<Integer> L;
+		   L = toList();
+		   for (int i = 0; i < tot; i++) {
+			   total += L.get(i);			   
+		   }
+		   return total;		   
+	   }	
    }
 
 

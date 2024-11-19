@@ -13,17 +13,21 @@ public class BSTNode<T extends Comparable<T>>
    private T val;
    private BSTNode<T> left;
    private BSTNode<T> right;
-
+   
 
 
    public BSTNode(T val)
    {
       this(val,null,null);
+      
    }
     
 
    public BSTNode(T val, BSTNode<T> l,BSTNode<T> r)
    {
+	   this.val = val;
+	   this.left = l;
+	   this.right = r;
    }
 
 
@@ -33,6 +37,16 @@ public class BSTNode<T extends Comparable<T>>
     */
    public void insert(T target)
    {
+	   if(this.val == target) {
+		   return;
+	   }
+	   if(this.val.compareTo(target) > 0) {
+		   insert(this.left.val);
+	   }
+	   else {
+		   insert(this.right.val);
+		   
+	   }
    }
 
 
@@ -60,7 +74,12 @@ public class BSTNode<T extends Comparable<T>>
     */
    public T getLargest()
    {
-	return null;
+	if(this.right == null) {
+		return this.val;
+	}
+	else {
+		return this.right.getLargest();
+	}
    }
 
 
