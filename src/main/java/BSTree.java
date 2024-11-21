@@ -95,9 +95,9 @@ public class BSTree
     */
    public int getSize()
    {
-      if(root==null) 
+      if(root==null) { 
          return 0;
-   
+      }
       CountConsumer count = new CountConsumer();
       root.inOrderTraversal(count);
       return count.nodes;

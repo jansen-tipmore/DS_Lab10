@@ -13,6 +13,7 @@ public class BSTNode<T extends Comparable<T>>
    private T val;
    private BSTNode<T> left;
    private BSTNode<T> right;
+   private int acc = 0;
    
 
 
@@ -41,13 +42,20 @@ public class BSTNode<T extends Comparable<T>>
 		   return;
 	   }
 	   if(this.val.compareTo(target) > 0) {
-		   insert(this.left.val);
+		   if(this.left == null) {
+			   BSTNode<T> newnode = new BSTNode<T>(target, null, null);
+			   this.left = newnode;
+		   }
+		   this.left.insert(target);
 	   }
-	   else {
-		   insert(this.right.val);
-		   
+	   if(this.val.compareTo(target) < 0) {
+		   if(this.right == null) {
+			   BSTNode<T> newnode = new BSTNode<T>(target, null, null);
+			   this.right = newnode;
+		   }
+		   this.right.insert(target);  
 	   }
-   }
+}
 
 
    /*
@@ -56,7 +64,16 @@ public class BSTNode<T extends Comparable<T>>
     */
    public T retrieve(T target)
    {
-	return target;
+	if(this.val == target) {
+		return target;
+	}
+	if(this.val.compareTo(target) > 0) {
+		this.left.retrieve(target);
+	}
+	else {
+		this.right.retrieve(target);
+	}
+	return null;
    }
 
 
@@ -66,7 +83,18 @@ public class BSTNode<T extends Comparable<T>>
      */
    public int retrieveDepth(T target)
    {
-	return 0;
+	if(this.val == target) {
+		return acc;
+	}
+	if(this.val.compareTo(target) > 0) {
+		acc++;
+		this.left.retrieveDepth(target);
+	}
+	else {
+		acc++;
+		this.right.retrieveDepth(target);
+	}
+	return acc;
    }
 
    /**
@@ -91,6 +119,13 @@ public class BSTNode<T extends Comparable<T>>
     */
    public void inOrderTraversal(Consumer<T> consume)
    {
+	   if(this.left == null) {
+		   consume.accept(this.val);
+		   this.right.inOrderTraversal(consume);
+	   }
+	   if(this.left != null) {
+		   this.left.inOrderTraversal(consume);
+	   }
 
    }
 
