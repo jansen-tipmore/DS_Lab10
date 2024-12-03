@@ -30,7 +30,7 @@ public class BSTree
 	   if (target == null) {
 		   return;
 	   }
-	   if (isEmpty() == true) {
+	   if (isEmpty()) {
 		   root = new BSTNode<Integer>(target, null, null);
 	   }
 	   else {
@@ -48,7 +48,7 @@ public class BSTree
 	if(target == null) {
 		return null;
 	}
-	if(isEmpty() == true) {
+	if(isEmpty()) {
 		return null;
 	}
 	else {
@@ -67,11 +67,12 @@ public class BSTree
      */
    public int retrieveDepth(Integer target)
    {
-	if(target == null) {
-		return -1;
+	   if(isEmpty()) {
+		   return 0;
 	}
-	return root.retrieveDepth(target);
-       
+	   else{
+		   return root.retrieveDepth(target);
+	  }
    }
 
     
@@ -98,9 +99,11 @@ public class BSTree
       if(root==null) { 
          return 0;
       }
-      CountConsumer count = new CountConsumer();
-      root.inOrderTraversal(count);
-      return count.nodes;
+      else {
+    	  CountConsumer count = new CountConsumer();
+    	  root.inOrderTraversal(count);
+    	  return count.nodes;
+      }
    }
 
 
@@ -113,7 +116,7 @@ public class BSTree
     */
    public Integer largest()
    {
-	if (isEmpty() == true) {
+	if (isEmpty()) {
 		return null;
 	}
 	else {
@@ -142,7 +145,7 @@ public class BSTree
             {
                public void accept(Integer i)
                {
-               //need to add some code here...
+               L.add(i);
                }
             });
       }
@@ -151,22 +154,19 @@ public class BSTree
    
    }
 
-
-
-
     /*
       Returns the sum of all the integers in the Tree
      */
    public int sum()
    {
 	   int total = 0;
-	   if(isEmpty() == true) {
+	   if(isEmpty()) {
 		   return 0;
 	   }
 	   else {
 		   int tot = getSize();
 		   List<Integer> L;
-		   L = toList();
+		   L = this.toList();
 		   for (int i = 0; i < tot; i++) {
 			   total += L.get(i);			   
 		   }
@@ -188,13 +188,13 @@ public class BSTree
      */
    public boolean myEquals(BSTree that)
    {
-	return false;
+	    if (this.root == null && that.root == null) {
+	        return true;
+	    }
+	    if (this.root == null || that.root == null) {
+	        return false;
+	    }
+	    return this.root.myEquals(that.root);
    
    }
-
-
-
-
-
-
 }

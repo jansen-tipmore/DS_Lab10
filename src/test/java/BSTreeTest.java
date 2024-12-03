@@ -46,7 +46,7 @@ class BSTreeTest {
 		assertTrue(Leest.equals(treat.toList()));
 	}
 
-/*  @Test final void BinaryEqualstest() { 
+ @Test final void BinaryEqualstest() { 
   BSTree equalitree = new BSTree();
   BSTree equalitree2 = new BSTree(); 
   BSTree equalitree3 = new BSTree(); 
@@ -55,11 +55,18 @@ class BSTreeTest {
   BSTree equalitree6 = new BSTree();
   
   
-  equalitree.insert(3); equalitree.insert(1); equalitree.insert(5);
-  equalitree.insert(2); equalitree.insert(4); equalitree.insert(6);
+  equalitree.insert(50); equalitree.insert(72); equalitree.insert(96);
+  equalitree.insert(94); equalitree.insert(107); equalitree.insert(26);
+  equalitree.insert(12); equalitree.insert(11); equalitree.insert(9);
+  equalitree.insert(10); equalitree.insert(25); equalitree.insert(51);
+  equalitree.insert(16); equalitree.insert(17); equalitree.insert(95);
   
-  equalitree2.insert(3); equalitree2.insert(1); equalitree2.insert(5);
-  equalitree2.insert(2); equalitree2.insert(4); equalitree2.insert(6);
+  equalitree2.insert(50); equalitree2.insert(72); equalitree2.insert(96);
+  equalitree2.insert(94); equalitree2.insert(107); equalitree2.insert(26);
+  equalitree2.insert(12); equalitree2.insert(11); equalitree2.insert(9);
+  equalitree2.insert(10); equalitree2.insert(25); equalitree2.insert(51);
+  equalitree2.insert(16); equalitree2.insert(17); equalitree2.insert(95);
+  equalitree2.insert(51);
   
   equalitree3.insert(3); equalitree3.insert(1); equalitree3.insert(5);
   equalitree3.insert(2); equalitree3.insert(4); equalitree3.insert(6);
@@ -72,14 +79,14 @@ class BSTreeTest {
   equalitree5.insert(5); equalitree5.insert(3); equalitree5.insert(1);
   
   
-  assertTrue(equalitree.myEquals(equalitree2));
+  assertFalse(equalitree.myEquals(equalitree2));
   assertFalse(equalitree.myEquals(equalitree3));
   assertFalse(equalitree.myEquals(equalitree4));
   assertFalse(equalitree.myEquals(equalitree5));
   assertFalse(equalitree.myEquals(equalitree6));
   assertFalse(equalitree6.myEquals(equalitree));
   assertFalse(equalitree6.myEquals(equalitree2)); 
-}*/
+}
   
   }
  

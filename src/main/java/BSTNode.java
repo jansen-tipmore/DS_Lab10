@@ -13,7 +13,6 @@ public class BSTNode<T extends Comparable<T>>
    private T val;
    private BSTNode<T> left;
    private BSTNode<T> right;
-   private int acc = 0;
    
 
 
@@ -38,24 +37,24 @@ public class BSTNode<T extends Comparable<T>>
     */
    public void insert(T target)
    {
-	   if(this.val == target) {
-		   return;
-	   }
 	   if(this.val.compareTo(target) > 0) {
 		   if(this.left == null) {
-			   BSTNode<T> newnode = new BSTNode<T>(target, null, null);
-			   this.left = newnode;
+			   this.left = new BSTNode<>(target, null, null);
 		   }
-		   this.left.insert(target);
+		   else {
+			   this.left.insert(target);
+		   }
 	   }
-	   if(this.val.compareTo(target) < 0) {
+	   else {
 		   if(this.right == null) {
-			   BSTNode<T> newnode = new BSTNode<T>(target, null, null);
-			   this.right = newnode;
+			   this.right = new BSTNode<>(target, null, null);
 		   }
+		   else {
 		   this.right.insert(target);  
 	   }
-}
+	   }
+	}
+// }
 
 
    /*
@@ -64,14 +63,14 @@ public class BSTNode<T extends Comparable<T>>
     */
    public T retrieve(T target)
    {
-	if(this.val == target) {
-		return target;
+	if(this.val.equals(target)) {
+		return this.val;
 	}
-	if(this.val.compareTo(target) > 0) {
-		this.left.retrieve(target);
+	if(this.val.compareTo(target) > 0 && this.left != null) {
+		return this.left.retrieve(target);
 	}
-	else {
-		this.right.retrieve(target);
+	else if(this.right != null) {
+		 return this.right.retrieve(target);
 	}
 	return null;
    }
@@ -81,20 +80,27 @@ public class BSTNode<T extends Comparable<T>>
        If it is present, what level is the node?
        If it is not present, what level would it be placed.
      */
-   public int retrieveDepth(T target)
-   {
-	if(this.val == target) {
-		return acc;
-	}
-	if(this.val.compareTo(target) > 0) {
-		acc++;
-		this.left.retrieveDepth(target);
-	}
-	else {
-		acc++;
-		this.right.retrieveDepth(target);
-	}
-	return acc;
+   public int retrieveDepth(T target) {
+	   if (target.compareTo(val) == 0)
+	   {
+		   return 0;
+	   } 
+	   else if (target.compareTo(val) < 0) {
+		   if (left == null) {
+			   return 1;
+		   }
+		   else {
+			   return left.retrieveDepth(target) + 1;
+		   }
+	   }
+	   else {
+		   if (right == null) {
+			   return 1;
+		   }
+		   else {
+			   return right.retrieveDepth(target) + 1;
+		   }
+	   }   
    }
 
    /**
@@ -119,12 +125,13 @@ public class BSTNode<T extends Comparable<T>>
     */
    public void inOrderTraversal(Consumer<T> consume)
    {
-	   if(this.left == null) {
-		   consume.accept(this.val);
-		   this.right.inOrderTraversal(consume);
-	   }
 	   if(this.left != null) {
 		   this.left.inOrderTraversal(consume);
+	   }
+	   consume.accept(this.val);
+	   
+	   if(this.right != null) {
+		   this.right.inOrderTraversal(consume);
 	   }
 
    }
@@ -139,11 +146,19 @@ public class BSTNode<T extends Comparable<T>>
 	    
 	    This one is long!
     */
-   public boolean myEquals(BSTNode<T> that)
-   {
-	return false;
-   
-
+   public boolean myEquals(BSTNode<T> that) {
+	   if(that == null) {
+		   return false;
+	   }
+	   if(!this.val.equals(that.val)) {
+		   return false;
+	   }
+	    if ((this.left == null && that.left != null) || (this.left != null && !this.left.myEquals(that.left))) {
+	        return false;
+	    }
+	    if ((this.right == null && that.right != null) || (this.right != null && !this.right.myEquals(that.right))) {
+	        return false;
+	    }
+	    return true;
    }
-
 }
